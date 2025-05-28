@@ -1,8 +1,3 @@
-// =============================================
-// STEP 1: Set up the image array 
-// =============================================
-// Array of all images to cycle through
-// Use clean relative paths (no './') for GitHub Pages
 const images = [
   'assets/image-content/image-1.png',
   'assets/image-content/image-2.png',
@@ -12,21 +7,12 @@ const images = [
   'assets/image-content/image-6.png'
 ];
 
-// =============================================
-// STEP 2: Reference HTML elements 
-// =============================================
-const imageContent = document.querySelector('.image-content');  // Image container
-const mainButton = document.getElementById('main-button');      // Image switch button
-const finalMessage = document.querySelector('.final-message');  // Final message
+const imageContent = document.querySelector('.image-content');
+const mainButton = document.getElementById('main-button');
+const finalMessage = document.querySelector('.final-message');
 
-// =============================================
-// STEP 3: Track what image we're at 
-// =============================================
 let currentIndex = 0;
 
-// =============================================
-// STEP 4: Update image function 
-// =============================================
 function updateImage() {
   imageContent.style.opacity = 0;
 
@@ -39,23 +25,18 @@ function updateImage() {
   };
 }
 
-// =============================================
-// STEP 5: Initial image display 
-// =============================================
+// Show first image on page load
 updateImage();
 
-// =============================================
-// STEP 6: Button click handler 
-// =============================================
 mainButton.addEventListener('click', () => {
   currentIndex++;
 
-  if (currentIndex < images.length) {
-    updateImage();
-  }
-
-  if (currentIndex === images.length - 1) {
+  // If we've reached the last image, show final message and stop
+  if (currentIndex >= images.length) {
     mainButton.style.display = 'none';
     finalMessage.style.display = 'block';
+    return;
   }
+
+  updateImage();
 });
